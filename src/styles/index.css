@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Orbitron', 'Rajdhani', sans-serif;
+    --font-cyber: 'Chakra Petch', 'Space Grotesk', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #040711;
+    color: #e2e8f0;
+    overflow-x: hidden;
+    user-select: none;
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+}
+
+.font-cyber {
+  font-family: var(--font-cyber);
+  letter-spacing: 0.03em;
+}
+
+/* Atmospheric game-grade lighting and materials (No cheap neon SaaS cards) */
+.game-viewport {
+  background: radial-gradient(ellipse 90% 80% at 50% 30%, #0a1124 0%, #050914 60%, #020408 100%);
+  position: relative;
+}
+
+.game-hud-panel {
+  background: linear-gradient(180deg, rgba(13, 20, 36, 0.88) 0%, rgba(7, 11, 22, 0.94) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.game-interactive-prop {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.game-interactive-prop:hover {
+  transform: translateY(-5px) scale(1.02);
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
+}
+
+.game-dock-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(10, 16, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.game-dock-btn:hover {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+.game-dock-btn.active {
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.25) 0%, rgba(14, 116, 144, 0.4) 100%);
+  border-color: #22d3ee;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #38bdf8;
+}
+
+/* Perspective Grid Floor */
+.perspective-floor {
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(600px) rotateX(48deg);
+  transform-origin: center 85%;
+}
+
+/* Anime / RPG Sanctuary Theme Classes */
+.rpg-gradient-text {
+  background: linear-gradient(135deg, #c084fc 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rpg-glass-card {
+  background: rgba(12, 16, 36, 0.82);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.rpg-hotspot-pill {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.rpg-hotspot-pill:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+}
+
+.rpg-dock-pill {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rpg-dock-pill:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.rpg-dock-pill.active {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+
+/* Atmospheric scanlines & dust */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* Glowing text */
+.text-glow-cyan {
+  text-shadow: 0 0 12px rgba(34, 211, 238, 0.7);
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 14px rgba(251, 191, 36, 0.8);
+}
+
+/* Equipment rarity borders */
+.rarity-common {
+  border-color: #64748b;
+  box-shadow: inset 0 0 12px rgba(100, 116, 139, 0.2);
+}
+
+.rarity-rare {
+  border-color: #38bdf8;
+  box-shadow: inset 0 0 16px rgba(56, 189, 248, 0.3);
+}
+
+.rarity-epic {
+  border-color: #a855f7;
+  box-shadow: inset 0 0 18px rgba(168, 85, 247, 0.35);
+}
+
+.rarity-legendary {
+  border-color: #f59e0b;
+  box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-halo {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.04);
+  }
+}
+
+.animate-pulse-halo {
+  animation: pulse-halo 3s ease-in-out infinite;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(4, 7, 17, 0.7);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.6);
+}
