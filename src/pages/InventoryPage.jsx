@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundFX } from '../utils/audioFX';
+import { InventoryItemArt } from '../components/InventoryItemArt';
 
 export const InventoryPage = () => {
   const { player, inventory, equipItem } = useGameState();
@@ -157,11 +158,16 @@ export const InventoryPage = () => {
                     </div>
 
                     {/* Cosmetic Preview Box */}
-                    <div className={`w-full h-24 rounded-xl bg-gradient-to-br ${item.imageStyle} flex items-center justify-center mb-3 relative overflow-hidden border border-white/10`}>
-                      <Sparkles className={`w-8 h-8 ${item.unlocked ? 'text-white' : 'text-slate-600'}`} />
+                    <div className={`w-full h-24 rounded-xl mb-3 relative overflow-hidden border border-white/10`}>
+                      <InventoryItemArt itemId={item.id} imageStyle={item.imageStyle} size="card" />
                       {item.equipped && (
-                        <div className="absolute top-1.5 right-1.5 bg-cyan-400 text-black text-[8px] font-heading font-black px-2 py-0.5 rounded-full shadow-md">
+                        <div className="absolute top-1.5 right-1.5 bg-cyan-400 text-black text-[8px] font-heading font-black px-2 py-0.5 rounded-full shadow-md z-10">
                           EQUIPPED
+                        </div>
+                      )}
+                      {!item.unlocked && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
+                          <Lock className="w-6 h-6 text-slate-500" />
                         </div>
                       )}
                     </div>
@@ -215,8 +221,8 @@ export const InventoryPage = () => {
               </div>
 
               <div className="py-4 space-y-4">
-                <div className={`w-full h-32 rounded-2xl bg-gradient-to-br ${inspectedItem.imageStyle} flex items-center justify-center border border-white/20 shadow-xl`}>
-                  <Sparkles className="w-12 h-12 text-white animate-pulse" />
+                <div className={`w-full h-36 rounded-2xl bg-gradient-to-br ${inspectedItem.imageStyle} border border-white/20 shadow-xl overflow-hidden relative`}>
+                  <InventoryItemArt itemId={inspectedItem.id} imageStyle={inspectedItem.imageStyle} size="modal" />
                 </div>
 
                 <div>
